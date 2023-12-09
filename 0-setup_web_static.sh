@@ -20,7 +20,7 @@ sudo echo "<html>
 		<p>This a random content<p>
 	</body>
 </html>" | sudo tee /data/web_static/releases/test/index.html
-ln -s -f /data/web_static/releases/test/  /data/web_static/current
-chown -R ubuntu:ubuntu /data/
+sudo ln -s -f /data/web_static/releases/test/  /data/web_static/current
+sudo chown -R ubuntu:ubuntu /data/
 sudo sed -i '/listen 80 default_server/a \    location \/hbnb_static {\n        alias \/data\/web_static\/current\/;\n    }' /etc/nginx/sites-enabled/default
 sudo service nginx restart
