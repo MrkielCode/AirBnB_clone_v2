@@ -66,4 +66,7 @@ def do_deploy(archive_path):
 
 def deploy():
     """ full deployment archile file"""
-    do_deploy(do_pack())
+    archive_file = do_pack()
+    if archive_file is None:
+        return False
+    return do_deploy(archive_file)
