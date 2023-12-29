@@ -42,17 +42,19 @@ def python_text(text="is cool"):
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def is_number(n):
-    """ script to route if parameters is int"""
+    """ function to route if parameters is int"""
     return f"{n} is a number"
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def num_template(n):
+    """ function to route if parameters is int"""
     return render_template('5-number.html', n=n)
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def num_even_or_odd(n):
+    """ function to route if parameters is int"""
     return render_template('6-number_odd_or_even.html', n=n)
 
 
