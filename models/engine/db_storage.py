@@ -72,8 +72,7 @@ class DBStorage:
         self.__session.add(obj)
 
     def save(self):
-        """save changes
-        """
+        """ save changes """
         self.__session.commit()
 
     def reload(self):
