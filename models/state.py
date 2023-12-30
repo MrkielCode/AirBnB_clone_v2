@@ -23,6 +23,7 @@ class State(BaseModel, Base):
     else:
         @property
         def cities(self):
+            """ return cities if not from DB"""
             city_list = []
             for city in models.storage.all(City).values():
                 if city.state_id == self.id:
