@@ -88,4 +88,3 @@ class DBStorage:
     def close(self):
         """ closing a session conection """
         self.__session.close()
-
