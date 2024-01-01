@@ -16,16 +16,23 @@ def close_storage(exception):
 
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<id>', strict_slashes=False)
+@app.route('/states', strict_slashes=False)
+@app.route('/states/<int:id>', strict_slashes=False)
 def list_states_and_cities(id=None):
-    """ sorting and routing data"""
-    all_states = storage.all(State)
-    if id:
-        state = all_states.get('State.{}'.format(id))
-        all_states = [state] if state else []
+    """Sorting and routing data"""
+    all_states = list(storage.all(State).values())
+    if id is not None:
+        state = next((state for state in all_states if state.id == id), None)
+        if state:
+            state.cities.sort(key=lambda city: city.name)
+            all_states = [state]
+        else:
+            all_states = []
     else:
-        all_states = sorted(all_states.values(), key=lambda state: state.name)
+        all_states.sort(key=lambda state: state.name)
         for state in all_states:
-            state.cities = sorted(state.cities, key=lambda city: city.name)
+            state.cities.sort(key=lambda city: city.name)
+
     return render_template('9-states.html',
                            states=all_states,
                            id=id,
