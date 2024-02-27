@@ -7,8 +7,8 @@ from flask import Flask, app
 
 app = Flask(__name__)
 
-
-@app.route('/', strict_slashes=False)
+#define the route for the root URL'/'
+@app.route('/airbnb-onepage/', strict_slashes=False)
 def HBNB():
     """
     function to display some string
@@ -17,4 +17,4 @@ def HBNB():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
